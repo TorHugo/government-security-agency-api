@@ -18,15 +18,20 @@ public class UserModel {
 
     @Column(name = "ds_uid")
     private String uid;
+
     @Column(name = "dt_publication")
     private String dateOfPublication;
+
     @Column(name = "ds_reward")
     private String reward;
+
     @Column(name = "ds_suspect")
     @Lob
     private String descriptionSuspect;
+
     @Column(name = "nm_title_publication")
     private String titlePublication;
+
     @Column(name = "nm_criminal_classification")
     private String criminalClassification;
 
