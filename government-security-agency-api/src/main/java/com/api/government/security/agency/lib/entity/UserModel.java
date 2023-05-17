@@ -23,6 +23,7 @@ public class UserModel {
     private String dateOfPublication;
 
     @Column(name = "ds_reward")
+    @Lob
     private String reward;
 
     @Column(name = "ds_suspect")
@@ -38,23 +39,18 @@ public class UserModel {
     @OneToOne(mappedBy = "userModel")
     private CharacteristicModel characteristicModel;
 
-    @OneToMany
-    @JoinColumn(name = "file_id")
+    @OneToMany(mappedBy = "userModel")
     private List<FileModel> files = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "image_id")
+    @OneToMany(mappedBy = "userModel")
     private List<ImageModel> images = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "language_id")
+    @OneToMany(mappedBy = "userModel")
     private List<LanguageModel> languages = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "aliase_id")
+    @OneToMany(mappedBy = "userModel")
     private List<AliasesModel> aliases = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "crime_id")
+    @OneToMany(mappedBy = "userModel")
     private List<CrimeModel> crimes = new ArrayList<>();
 }

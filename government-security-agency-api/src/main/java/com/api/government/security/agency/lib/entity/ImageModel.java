@@ -19,4 +19,8 @@ public class ImageModel {
 
     @Column(name = "ds_uri_image")
     private String uriImage;
+
+    @Column(name = "ds_caption")
+    @Lob
+    private String caption;
 }
