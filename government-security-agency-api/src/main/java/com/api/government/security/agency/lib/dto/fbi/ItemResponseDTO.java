@@ -21,6 +21,7 @@ public class ItemResponseDTO {
     private String sex;
     private String hair;
     private String ncic;
+    private String height;
     @JsonProperty("dates_of_birth_used")
     private List<String> datesOfBirthUsed;
     private String caution;
