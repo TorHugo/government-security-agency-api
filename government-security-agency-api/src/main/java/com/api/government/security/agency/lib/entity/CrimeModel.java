@@ -19,5 +19,6 @@ public class CrimeModel {
     private UserModel userModel;
 
     @Column(name = "nm_crime")
+    @Lob
     private String nmCrime;
 }

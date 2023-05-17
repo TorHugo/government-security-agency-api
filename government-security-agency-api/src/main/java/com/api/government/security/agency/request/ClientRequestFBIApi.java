@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 public class ClientRequestFBIApi {
 
-    static final String host = "https://api.fbi.gov/@wanted?pageSize=1&page=";
+    static final String host = "https://api.fbi.gov/@wanted?pageSize=20&page=";
 
     private final RestTemplate restTemplate;
 

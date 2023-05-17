@@ -16,7 +16,7 @@ public class AliasesModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserModel usuarioModel;
+    private UserModel userModel;
 
     @Column(name = "nm_aliase")
     private String nmAliase;

@@ -20,6 +20,9 @@ public class CharacteristicModel {
 
     @Column(name = "nm_sex")
     private String nmSex;
+    @Column(name = "ds_marks")
+    @Lob
+    private String scarsAndMarks;
     @Column(name = "tp_hair")
     private String typeHair;
     @Column(name = "nm_weight")
