@@ -56,12 +56,12 @@ public abstract class RequestServiceImpl implements RequestService {
             }
         });
     }
-    @Autowired
+    @Override
     public void saveToDataBase(final UserModel user){
         log.info("3.1. Save to User in the database.");
         userRepository.save(user);
     }
-    @Autowired
+    @Override
     public void saveToDataBase(final CharacteristicModel model){
         log.info("3.2. Save to Characteristic in the database.");
         characteristicRepository.save(model);

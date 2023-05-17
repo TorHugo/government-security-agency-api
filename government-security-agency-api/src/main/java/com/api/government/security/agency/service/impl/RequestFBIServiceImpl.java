@@ -1,19 +1,14 @@
 package com.api.government.security.agency.service.impl;
 
-import com.api.government.security.agency.MapperToFBIRequest;
+import com.api.government.security.agency.mapper.MapperToFBIRequest;
 import com.api.government.security.agency.lib.dto.fbi.FBIResponseDTO;
-import com.api.government.security.agency.lib.dto.fbi.FileResponseDTO;
 import com.api.government.security.agency.lib.dto.fbi.ItemResponseDTO;
 import com.api.government.security.agency.lib.entity.*;
-import com.api.government.security.agency.repositories.*;
 import com.api.government.security.agency.request.ClientRequestFBIApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 import java.util.stream.IntStream;
 
 @Service
