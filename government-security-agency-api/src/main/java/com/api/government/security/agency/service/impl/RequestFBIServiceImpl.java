@@ -36,6 +36,8 @@ public class RequestFBIServiceImpl extends RequestServiceImpl{
             response.getItems().forEach(itemResponse -> {
                 savingInTheDatabase(itemResponse,
                         mapper.mapperToUser(itemResponse));
+
+                countRecords++;
             });
         });
 
@@ -43,12 +45,12 @@ public class RequestFBIServiceImpl extends RequestServiceImpl{
     }
 
     private void savingInTheDatabase(final ItemResponseDTO itemResponse, final UserModel userModel){
-        this.saveToDataBase(userModel);
-        this.saveToDataBase(mapper.mapperToCharacteristic(itemResponse, userModel));
-        this.saveToDataBase(mapper.mapperToImages(itemResponse, userModel));
-        this.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel));
-        this.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel));
-        this.saveToDataBase(mapper.mapperToAlias(itemResponse, userModel));
-        this.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel));
+        super.saveToDataBase(userModel);
+        super.saveToDataBase(mapper.mapperToCharacteristic(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToImages(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToAlias(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel));
     }
 }

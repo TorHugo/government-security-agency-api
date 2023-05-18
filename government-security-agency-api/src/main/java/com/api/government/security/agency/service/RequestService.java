@@ -10,6 +10,5 @@ import java.util.List;
 public interface RequestService {
     Integer requestForApi();
     <T> void saveToDataBase(final List<T> items);
-    void saveToDataBase(final UserModel userModel);
-    void saveToDataBase(final CharacteristicModel characteristicModel);
+    <T> void saveToDataBase(final T item);
 }
