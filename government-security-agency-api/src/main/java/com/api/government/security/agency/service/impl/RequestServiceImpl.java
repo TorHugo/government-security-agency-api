@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -57,13 +58,13 @@ public abstract class RequestServiceImpl implements RequestService {
         });
     }
     @Override
-    public void saveToDataBase(final UserModel user){
-        log.info("3.1. Save to User in the database.");
-        userRepository.save(user);
-    }
-    @Override
-    public void saveToDataBase(final CharacteristicModel model){
-        log.info("3.2. Save to Characteristic in the database.");
-        characteristicRepository.save(model);
+    public <T> void saveToDataBase(final T item){
+        if (item instanceof UserModel) {
+            log.info("3.1. Save to User in the database.");
+            userRepository.save((UserModel) item);
+        } else {
+            log.info("3.2. Save to Characteristic in the database.");
+            characteristicRepository.save((CharacteristicModel) item);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.api.government.security.agency.mapper;
 
 import com.api.government.security.agency.lib.dto.fbi.ItemResponseDTO;
+import com.api.government.security.agency.lib.dto.interpol.InterpolResponseNoticeDTO;
 import com.api.government.security.agency.lib.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,106 +15,192 @@ import java.util.Objects;
 @Slf4j
 public class MapperToFBIRequest {
 
-    public UserModel mapperToUser(final ItemResponseDTO item){
+    public <T> UserModel mapperToUser(final T item){
         UserModel entity = new UserModel();
-        entity.setUid(item.getUid());
-        entity.setDateOfPublication(item.getPublication());
-        entity.setReward(item.getRewardText());
-        entity.setDescriptionSuspect(Objects.isNull(item.getCaution()) ? null : item.getCaution().replaceAll("<p>|</p>", ""));
-        entity.setTitlePublication(item.getTitle());
-        entity.setCriminalClassification(item.getPersonClassification());
+
+        if (item instanceof ItemResponseDTO){
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+
+            entity.setUid(itemResponse.getUid());
+            entity.setDateOfPublication(itemResponse.getPublication());
+            entity.setReward(itemResponse.getRewardText());
+            entity.setDescriptionSuspect(Objects.isNull(itemResponse.getCaution()) ? null : itemResponse.getCaution().replaceAll("<p>|</p>", ""));
+            entity.setTitlePublication(itemResponse.getTitle());
+            entity.setCriminalClassification(itemResponse.getPersonClassification());
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
+            entity.setTitlePublication(itemResponse.getName().concat(" " + itemResponse.getForename()));
+            entity.setCriminalClassification("Main or Red");
+        }
 
         return entity;
     }
-    public CharacteristicModel mapperToCharacteristic(final ItemResponseDTO item, final UserModel userModel){
+    public <T> CharacteristicModel mapperToCharacteristic(final T item, final UserModel userModel){
         CharacteristicModel entity = new CharacteristicModel();
-        entity.setUserModel(userModel);
-        entity.setScarsAndMarks(item.getScarsAndMarks());
-        entity.setNmSex(item.getSex());
-        entity.setTypeHair(item.getHair());
-        entity.setWeight(item.getWeight());
-        entity.setHeight(item.getHeight());
-        entity.setEthnicity(item.getRaceRaw());
-        entity.setColorEye(item.getEyesRaw());
-        entity.setNationality(item.getNationality());
-        entity.setBirthPlace(item.getPlaceOfBirth());
-        entity.setAge(String.valueOf(Objects.isNull(item.getAgeMax()) ? item.getAgeMin() : item.getAgeMax()));
+
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+
+            entity.setUserModel(userModel);
+            entity.setScarsAndMarks(itemResponse.getScarsAndMarks());
+            entity.setNmSex(itemResponse.getSex());
+            entity.setTypeHair(itemResponse.getHair());
+            entity.setWeight(itemResponse.getWeight());
+            entity.setHeight(itemResponse.getHeight());
+            entity.setEthnicity(itemResponse.getRaceRaw());
+            entity.setColorEye(itemResponse.getEyesRaw());
+            entity.setNationality(itemResponse.getNationality());
+            entity.setBirthPlace(itemResponse.getPlaceOfBirth());
+            entity.setAge(String.valueOf(Objects.isNull(itemResponse.getAgeMax()) ? itemResponse.getAgeMin() : itemResponse.getAgeMax()));
+
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
+
+            entity.setUserModel(userModel);
+            entity.setWeight(itemResponse.getWeight());
+            entity.setNmSex(itemResponse.getSex());
+            entity.setNationality(Objects.isNull(itemResponse.getNationalities()) ? null : itemResponse.getNationalities().get(0));
+            entity.setColorEye(Objects.isNull(itemResponse.getEyesColors()) ? null : itemResponse.getEyesColors().get(0));
+            entity.setHeight(itemResponse.getHeight());
+            entity.setBirthPlace(itemResponse.getPlaceOfBirth());
+            entity.setScarsAndMarks(itemResponse.getDistinguishingMarks());
+            entity.setTypeHair(Objects.isNull(itemResponse.getHair()) ? null : itemResponse.getHair().get(0));
+        }
 
         return entity;
     }
-    public List<FileModel> mapperToFiles(final ItemResponseDTO item, final UserModel user){
+    public <T> List<FileModel> mapperToFiles(final T item, final UserModel user){
         List<FileModel> entity = new ArrayList<>();
-        if (Objects.isNull(item.getFiles()))
-            return Collections.emptyList();
+        FileModel model = new FileModel();
 
-        item.getFiles().forEach(file -> {
-            FileModel model = new FileModel();
-            model.setNmFile(file.getName());
-            model.setFileUri(file.getUrl());
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+
+            if (Objects.isNull(itemResponse.getFiles()))
+                return Collections.emptyList();
+
+            itemResponse.getFiles().forEach(file -> {
+                model.setNmFile(file.getName());
+                model.setFileUri(file.getUrl());
+                model.setUserModel(user);
+
+                entity.add(model);
+            });
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
             model.setUserModel(user);
+            model.setNmFile(itemResponse.getLinks().getSelf().getClass().getSimpleName());
+            model.setFileUri(itemResponse.getLinks().getSelf().getHref());
 
             entity.add(model);
-        });
+        }
+
         return entity;
     }
 
-    public List<ImageModel> mapperToImages(ItemResponseDTO item, UserModel userModel) {
+    public <T> List<ImageModel> mapperToImages(final T item, final UserModel user) {
         List<ImageModel> entity = new ArrayList<>();
-        if (Objects.isNull(item.getImages()))
-            return Collections.emptyList();
+        ImageModel model = new ImageModel();
 
-        item.getImages().forEach(image -> {
-            ImageModel model = new ImageModel();
-            model.setUriImage(image.getOriginal());
-            model.setCaption(image.getCaption());
-            model.setUserModel(userModel);
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+            if (Objects.isNull(itemResponse.getImages()))
+                return Collections.emptyList();
+
+            itemResponse.getImages().forEach(image -> {
+                model.setUserModel(user);
+                model.setUriImage(image.getOriginal());
+                model.setCaption(image.getCaption());
+
+                entity.add(model);
+            });
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
+            model.setUserModel(user);
+            model.setCaption(itemResponse.getLinks().getThumbnail().getClass().getSimpleName());
+            model.setUriImage(itemResponse.getLinks().getThumbnail().getHref());
 
             entity.add(model);
-        });
+        }
+
         return entity;
     }
-    public List<LanguageModel> mapperToLanguage(ItemResponseDTO item, UserModel userModel) {
+    public <T> List<LanguageModel> mapperToLanguage(final T item, final UserModel userModel) {
         List<LanguageModel> entity = new ArrayList<>();
-        if (Objects.isNull(item.getLanguages()))
-            return Collections.emptyList();
+        LanguageModel model = new LanguageModel();
 
-        item.getLanguages().forEach(language -> {
-            LanguageModel model = new LanguageModel();
-            model.setNmLanguage(language);
-            model.setUserModel(userModel);
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+            if (Objects.isNull(itemResponse.getLanguages()))
+                return Collections.emptyList();
 
-            entity.add(model);
-        });
+            itemResponse.getLanguages().forEach(language -> {
+                model.setNmLanguage(language);
+                model.setUserModel(userModel);
+
+                entity.add(model);
+            });
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
+            if (Objects.isNull(itemResponse.getLanguagesSpoken()))
+                return Collections.emptyList();
+
+            itemResponse.getLanguagesSpoken().forEach(language -> {
+                model.setNmLanguage(language);
+                model.setUserModel(userModel);
+
+                entity.add(model);
+            });
+        }
+
         return entity;
     }
-    public List<AliasesModel> mapperToAlias(ItemResponseDTO item, UserModel userModel) {
+    public <T> List<AliasesModel> mapperToAlias(final T item, final UserModel userModel) {
         List<AliasesModel> entity = new ArrayList<>();
-        if (Objects.isNull(item.getAliases()))
-            return Collections.emptyList();
 
-        item.getAliases().forEach(alias -> {
-            AliasesModel model = new AliasesModel();
-            model.setNmAliase(alias);
-            model.setUserModel(userModel);
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+            if (Objects.isNull(itemResponse.getAliases()))
+                return Collections.emptyList();
 
-            entity.add(model);
-        });
+            itemResponse.getAliases().forEach(alias -> {
+                AliasesModel model = new AliasesModel();
+                model.setNmAliase(alias);
+                model.setUserModel(userModel);
+
+                entity.add(model);
+            });
+        }
         return entity;
     }
-    public List<CrimeModel> mapperToCrime(ItemResponseDTO item, UserModel userModel) {
+    public <T> List<CrimeModel> mapperToCrime(final T item, final UserModel userModel) {
         List<CrimeModel> entity = new ArrayList<>();
+        CrimeModel model = new CrimeModel();
 
-        final List<String> crimes = parseToCrimes(item.getDescription());
-        if (Objects.isNull(crimes))
-            return Collections.emptyList();
+        if (item instanceof ItemResponseDTO) {
+            final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
+            final List<String> crimes = parseToCrimes(itemResponse.getDescription());
+            if (Objects.isNull(crimes))
+                return Collections.emptyList();
 
-        crimes.forEach(crime -> {
-            CrimeModel model = new CrimeModel();
-            model.setNmCrime(crime);
-            model.setUserModel(userModel);
+            crimes.forEach(crime -> {
+                model.setUserModel(userModel);
+                model.setNmCrime(crime);
 
-            entity.add(model);
-        });
+                entity.add(model);
+            });
+        } else {
+            final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
+            if (itemResponse.getArrestWarrantes().isEmpty())
+                return Collections.emptyList();
+
+            itemResponse.getArrestWarrantes().forEach(crime -> {
+                model.setUserModel(userModel);
+                model.setNmCrime(crime.getCharge());
+
+                entity.add(model);
+            });
+        }
         return entity;
     }
     private List<String> parseToCrimes(final String input){

@@ -17,7 +17,7 @@ public class InterpolResponseNoticeDTO {
     private String uid;
     @JsonProperty("languages_spoken_ids")
     private List<String> languagesSpoken;
-    private List<String> nacionalities;
+    private List<String> nationalities;
     private String height;
     @JsonProperty("sex_id")
     private String sex;
@@ -32,4 +32,6 @@ public class InterpolResponseNoticeDTO {
     private List<String> hair;
     @JsonProperty("place_of_birth")
     private String placeOfBirth;
+    @JsonProperty("_links")
+    private LinkResponseDTO links;
 }
