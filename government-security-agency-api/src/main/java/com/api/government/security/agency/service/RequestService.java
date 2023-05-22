@@ -9,6 +9,6 @@ import java.util.List;
 @Component
 public interface RequestService {
     Integer requestForApi();
-    <T> void saveToDataBase(final List<T> items);
+    <T> void saveToDataBase(final List<T> items, String typeClass);
     <T> void saveToDataBase(final T item);
 }

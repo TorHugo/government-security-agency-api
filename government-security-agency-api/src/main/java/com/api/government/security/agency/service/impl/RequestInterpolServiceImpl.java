@@ -4,7 +4,7 @@ import com.api.government.security.agency.lib.dto.fbi.ItemResponseDTO;
 import com.api.government.security.agency.lib.dto.interpol.InterpolResponseDTO;
 import com.api.government.security.agency.lib.dto.interpol.InterpolResponseNoticeDTO;
 import com.api.government.security.agency.lib.entity.UserModel;
-import com.api.government.security.agency.mapper.MapperToFBIRequest;
+import com.api.government.security.agency.mapper.MapperToRequest;
 import com.api.government.security.agency.request.ClientRequestInterpolApi;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +20,11 @@ public class RequestInterpolServiceImpl extends RequestServiceImpl{
     private ClientRequestInterpolApi request;
 
     static final Integer count = 0;
-    static final Integer endCount = 1;
+    static final Integer endCount = 4;
     static Integer countRecords = 0;
 
     @Autowired
-    private MapperToFBIRequest mapper;
+    private MapperToRequest mapper;
 
     @Override
     public Integer requestForApi() {
@@ -47,12 +47,13 @@ public class RequestInterpolServiceImpl extends RequestServiceImpl{
         return countRecords;
     }
 
-    private <T> void savingInTheDatabase(final T itemResponse, final UserModel userModel){
+    private void savingInTheDatabase(final InterpolResponseNoticeDTO itemResponse, final UserModel userModel){
         super.saveToDataBase(userModel);
         super.saveToDataBase(mapper.mapperToCharacteristic(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToImages(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToImages(itemResponse, userModel), "ImageModel");
+        super.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel), "FileModel");
+        super.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel), "LanguageModel");
+        super.saveToDataBase(mapper.mapperToAlias(itemResponse, userModel), "AliasesModel");
+        super.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel), "CrimeModel");
     }
 }

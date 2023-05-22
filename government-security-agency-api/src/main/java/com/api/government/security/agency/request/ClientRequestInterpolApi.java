@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @Slf4j
 public class ClientRequestInterpolApi {
-    static final String host = "https://ws-public.interpol.int/notices/v1/red?&resultPerPage=1&page=";
+    static final String host = "https://ws-public.interpol.int/notices/v1/red?&resultPerPage=50&page=";
 
     private final RestTemplate restTemplate;
 

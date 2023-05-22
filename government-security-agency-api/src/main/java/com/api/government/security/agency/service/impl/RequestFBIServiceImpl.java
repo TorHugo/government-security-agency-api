@@ -1,6 +1,6 @@
 package com.api.government.security.agency.service.impl;
 
-import com.api.government.security.agency.mapper.MapperToFBIRequest;
+import com.api.government.security.agency.mapper.MapperToRequest;
 import com.api.government.security.agency.lib.dto.fbi.FBIResponseDTO;
 import com.api.government.security.agency.lib.dto.fbi.ItemResponseDTO;
 import com.api.government.security.agency.lib.entity.*;
@@ -23,7 +23,7 @@ public class RequestFBIServiceImpl extends RequestServiceImpl{
     static Integer countRecords = 0;
 
     @Autowired
-    private MapperToFBIRequest mapper;
+    private MapperToRequest mapper;
 
     @Override
     public Integer requestForApi() {
@@ -47,10 +47,10 @@ public class RequestFBIServiceImpl extends RequestServiceImpl{
     private void savingInTheDatabase(final ItemResponseDTO itemResponse, final UserModel userModel){
         super.saveToDataBase(userModel);
         super.saveToDataBase(mapper.mapperToCharacteristic(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToImages(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToAlias(itemResponse, userModel));
-        super.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel));
+        super.saveToDataBase(mapper.mapperToImages(itemResponse, userModel), "ImageModel");
+        super.saveToDataBase(mapper.mapperToFiles(itemResponse, userModel), "FileModel");
+        super.saveToDataBase(mapper.mapperToLanguage(itemResponse, userModel), "LanguageModel");
+        super.saveToDataBase(mapper.mapperToAlias(itemResponse, userModel), "AliasesModel");
+        super.saveToDataBase(mapper.mapperToCrime(itemResponse, userModel), "CrimeModel");
     }
 }

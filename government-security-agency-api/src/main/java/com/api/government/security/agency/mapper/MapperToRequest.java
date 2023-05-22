@@ -2,6 +2,7 @@ package com.api.government.security.agency.mapper;
 
 import com.api.government.security.agency.lib.dto.fbi.ItemResponseDTO;
 import com.api.government.security.agency.lib.dto.interpol.InterpolResponseNoticeDTO;
+import com.api.government.security.agency.lib.dto.interpol.ThumbnailResponseDTO;
 import com.api.government.security.agency.lib.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import java.util.Objects;
 
 @Component
 @Slf4j
-public class MapperToFBIRequest {
+public class MapperToRequest {
 
     public <T> UserModel mapperToUser(final T item){
         UserModel entity = new UserModel();
@@ -117,14 +118,24 @@ public class MapperToFBIRequest {
         } else {
             final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
             model.setUserModel(user);
-            model.setCaption(itemResponse.getLinks().getThumbnail().getClass().getSimpleName());
-            model.setUriImage(itemResponse.getLinks().getThumbnail().getHref());
+            model.setCaption(Objects.nonNull(itemResponse.getLinks().getThumbnail()) ? itemResponse.getLinks().getThumbnail().getClass().getSimpleName() : "@none");
+            model.setUriImage(verifyThumbnail(itemResponse.getLinks().getThumbnail()));
 
             entity.add(model);
         }
 
         return entity;
     }
+
+    private String verifyThumbnail(ThumbnailResponseDTO thumbnail) {
+        if (Objects.isNull(thumbnail))
+            return null;
+        if (Objects.isNull(thumbnail.getHref()))
+            return null;
+
+        return thumbnail.getHref();
+    }
+
     public <T> List<LanguageModel> mapperToLanguage(final T item, final UserModel userModel) {
         List<LanguageModel> entity = new ArrayList<>();
         LanguageModel model = new LanguageModel();
@@ -179,16 +190,13 @@ public class MapperToFBIRequest {
 
         if (item instanceof ItemResponseDTO) {
             final ItemResponseDTO itemResponse = (ItemResponseDTO) item;
-            final List<String> crimes = parseToCrimes(itemResponse.getDescription());
-            if (Objects.isNull(crimes))
+            if (Objects.isNull(itemResponse.getDescription()))
                 return Collections.emptyList();
 
-            crimes.forEach(crime -> {
-                model.setUserModel(userModel);
-                model.setNmCrime(crime);
+            model.setUserModel(userModel);
+            model.setNmCrime(itemResponse.getDescription());
 
-                entity.add(model);
-            });
+            entity.add(model);
         } else {
             final InterpolResponseNoticeDTO itemResponse = (InterpolResponseNoticeDTO) item;
             if (itemResponse.getArrestWarrantes().isEmpty())
@@ -202,25 +210,5 @@ public class MapperToFBIRequest {
             });
         }
         return entity;
-    }
-    private List<String> parseToCrimes(final String input){
-        if (input == null || input.isEmpty() ||  !input.contains(";")) {
-            log.info("Input string is null or empty. Returning empty list.");
-            return Collections.singletonList(input);
-        }
-
-        String[] parts = input.split(";");
-        log.info("Number of parts: " + parts.length);
-        List<String> substrings = new ArrayList<>(parts.length);
-        for (String part : parts) {
-            String trimmedPart = part.trim();
-            log.info("Trimmed part: " + trimmedPart);
-            if (!trimmedPart.isEmpty()) {
-                substrings.add(trimmedPart);
-                log.info("Added part to substrings: " + trimmedPart);
-            }
-        }
-        log.info("Final substrings: " + substrings);
-        return substrings;
     }
 }
