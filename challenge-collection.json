@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "12387aa7-bce6-4633-b7af-16cf372e5859",
+		"name": "Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19911460",
+		"_collection_link": "https://speeding-astronaut-515768.postman.co/workspace/My-Workspace~1952d145-a352-472d-87c9-3399bd278651/collection/19911460-12387aa7-bce6-4633-b7af-16cf372e5859?action=share&creator=19911460&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "CopyToFBI",
+			"item": [
+				{
+					"name": "FBI - CopyToEntity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/request/fbi",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request",
+								"fbi"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "FBI - CopyToEntity",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/request/interpol",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"request",
+										"interpol"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": 950\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CopyToInterpol",
+			"item": [
+				{
+					"name": "Interpol - CopyToEntity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/request/interpol",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"request",
+								"interpol"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Interpol - CopyToEntity",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base}}/request/interpol",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"request",
+										"interpol"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "950"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Suspect",
+			"item": [
+				{
+					"name": "FindByUserId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/suspect/15005",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"suspect",
+								"15005"
+							],
+							"query": [
+								{
+									"key": "suspected_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/suspect/10",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"suspect",
+										"10"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"criminal\": {\n        \"description\": \"Yevgyeniy Igoryevich Polyanin is wanted for his alleged involvement in ransomware attacks and money laundering activities.  It is alleged that, through the use and deployment of Sodinokibi and REvil ransomware, Polyanin left electronic notes in the form of a text file on victims’ computers.  The notes included web addresses for the victims to visit and have their files decrypted.  Upon visiting these web addresses, victims were given the ransom amount demanded and provided a virtual currency address to use to pay the ransom.  If a victim paid the ransom amount, Polyanin provided the decryption key, and the victims then were able to access their files.  If a victim did not pay the ransom, Polyanin typically posted the victims’ exfiltrated data or claimed he sold the exfiltrated data to third parties.  Polyanin has been charged in an indictment filed in the United States District Court for the Northern District of Texas, Dallas, Texas, with conspiracy to commit fraud and related activity in connection with computers, substantive counts of intentional damage to protected computers, and conspiracy to commit money laundering.\\r\\n \",\n        \"reward\": \"@none\",\n        \"name_or_title\": \"YEVGYENIY IGORYEVICH POLYANIN\"\n    },\n    \"aliases\": [],\n    \"crimes\": [\n        \"Yevgyeniy Igoryevich Polyanin is wanted for his alleged involvement in ransomware attacks and money laundering activities.  It is alleged that, through the use and deployment of Sodinokibi and REvil ransomware, Polyanin left electronic notes in the form of a text file on victims’ computers.  The notes included web addresses for the victims to visit and have their files decrypted.  Upon visiting these web addresses, victims were given the ransom amount demanded and provided a virtual currency address to use to pay the ransom.  If a victim paid the ransom amount, Polyanin provided the decryption key, and the victims then were able to access their files.  If a victim did not pay the ransom, Polyanin typically posted the victims’ exfiltrated data or claimed he sold the exfiltrated data to third parties.  Polyanin has been charged in an indictment filed in the United States District Court for the Northern District of Texas, Dallas, Texas, with conspiracy to commit fraud and related activity in connection with computers, substantive counts of intentional damage to protected computers, and conspiracy to commit money laundering.\\r\\n \"\n    ],\n    \"files\": [\n        {\n            \"uri\": \"https://www.fbi.gov/wanted/cyber/yevgyeniy-igoryevich-polyanin/download.pdf\",\n            \"language\": \"English\"\n        }\n    ],\n    \"images\": [\n        {\n            \"uri\": \"https://www.fbi.gov/wanted/cyber/yevgyeniy-igoryevich-polyanin/polyanin5.jpg\",\n            \"description\": \"@none\"\n        }\n    ],\n    \"characteristic\": {\n        \"age\": \"null\",\n        \"ethnicity\": \"White\",\n        \"nationatily\": \"Russian\",\n        \"sex\": \"Male\",\n        \"marks\": \"@none\",\n        \"hair\": \"@none\",\n        \"birth_of_place\": \"Russia\",\n        \"color_eye\": \"@none\"\n    },\n    \"anti_money_laundering\": true\n}"
+						},
+						{
+							"name": "400 - SUSPECT_ID NÃO ENCONTRADO",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/suspect/15005",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"suspect",
+										"15005"
+									],
+									"query": [
+										{
+											"key": "suspected_id",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"timestamp\": \"2023-05-23T05:37:45.589035Z\",\r\n    \"status\": 400,\r\n    \"error\": \"DataBase exception.\",\r\n    \"message\": \"Suspect not found!\",\r\n    \"path\": \"/api/suspect/15005\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "FindByAML",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base}}/suspect",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"suspect"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/suspect",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"suspect"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/9\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 9,\r\n        \"name_or_title\": \"Frederick Arias is wanted for his alleged involvement in a fraud scheme in which victim investors lost over $9 million dollars... \"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/15\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 15,\r\n        \"name_or_title\": \"Yevgyeniy Igoryevich Polyanin is wanted for his alleged involvement in ransomware attacks and money laundering activities.  It is alleged that, through the use and deployment of Sodinokibi and REvil ransomware... \"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/23\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 23,\r\n        \"name_or_title\": \"... \"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/31\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 31,\r\n        \"name_or_title\": \"Tan Wee Beng is wanted for allegedly conspiring to violate the International Emergency Economic Powers Act (IEEPA) by doing business with North Korean proliferation entities.  Tan Wee Beng is the director and major shareholder of ...\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/44\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 44,\r\n        \"name_or_title\": \"Mykalai Kontilai is wanted for his alleged involvement in a series of criminal activities in Las Vegas, Nevada.  The company known as Collectors Coffee, Inc., dba Collector’s Café (CCI), was founded in 2007, and operated by Mykalai Kontilai through 2019.  From approximately 2012 to 2018, Kontilai allegedly obtained investors funds with the ...\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/138\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 138,\r\n        \"name_or_title\": \"Li Fangwei, who is more commonly known by the name Karl Lee, was previously sanctioned by the United States for his alleged role as a principal supplier to Iran's ballistic missile program. It is alleged that from 2006 through the present time Li Fangwei controlled a large network of front companies based in Eastern China which he allegedly used to defraud United States banks, regulators, and companies in violation of the International Emergency Economic Powers Act (IEEPA) and the Weapons of Mass Destruction Proliferators Sanctions Regulations. It is also alleged that he continues to violate United States law and economic sanctions by engaging in prohibited transactions worth millions of dollars through United States-based financial institutions.\\r\\n \\r\\nLi Fangwei was indicted on April 28, 2014, in the United States District Court, Southern District of New York, and a federal arrest warrant was issued after he was charged with Conspiracy to Violate the International Emergency Economic Powers Act (One Count); Violation of the International Emergency Economic Powers Act (Two Counts); Conspiracy to Commit Money Laundering (One Count); Conspiracy to Commit Wire and Bank Fraud (One Count); and Wire Fraud (Two Counts).\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/133\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 133,\r\n        \"name_or_title\": \"Christopher Robert Metsos is wanted for failing to register as an agent of a foreign government as required by United States law. This occurred from 1993 to 2005. During that time, Metsos allegedly took part in a money laundering scheme, causing money to be illegally transferred to other United States-based co-conspirators who were also unregistered agents of a foreign government. A federal arrest warrant was issued for Metsos in the United States District Court, Southern District of New York, on June 25, 2010, after he was charged with conspiracy to act as an unregistered agent of a foreign government and conspiracy to commit money laundering. Metsos was arrested in Cyprus on June 29, 2010, but posted bail and fled.\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/160\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 160,\r\n        \"name_or_title\": \"Evgeniy Mikhailovich Bogachev, using the online monikers “lucky12345” and “slavik”, is wanted for his alleged involvement in a wide-ranging racketeering enterprise and scheme that installed, without authorization, malicious software known as “Zeus” on victims’ computers. The software was used to capture bank account numbers, passwords, personal identification numbers, and other information necessary to log into online banking accounts. While Bogachev knowingly acted in a role as an administrator, others involved in the scheme conspired to distribute spam and phishing emails, which contained links to compromised web sites. Victims who visited these web sites were infected with the malware, which Bogachev and others utilized to steal money from the victims’ bank accounts. This online account takeover fraud has been investigated by the FBI since the summer of 2009.\\r\\n \\r\\nStarting in September of 2011, the FBI began investigating a modified version of the Zeus Trojan, known as GameOver Zeus (GOZ). It is believed GOZ is responsible for more than one million computer infections, resulting in financial losses of more than $100 million.\\r\\n \\r\\nOn August 22, 2012, Bogachev was indicted under the nickname “lucky12345” by a federal grand jury in the District of Nebraska on charges of Conspiracy to Participate in Racketeering Activity; Bank Fraud; Conspiracy to Violate the Computer Fraud and Abuse Act; Conspiracy to Violate the Identity Theft and Assumption Deterrence Act; and Aggravated Identity Theft. On May 19, 2014, Bogachev was indicted in his true name by a federal grand jury in the Western District of Pennsylvania on charges of Conspiracy; Computer Fraud; Wire Fraud; Bank Fraud; and Money Laundering. On May 30, 2014, a criminal complaint was issued in the District of Nebraska that ties the previously indicted nickname of \\\"lucky12345\\\" to Bogachev and charges him with Conspiracy to Commit Bank Fraud.\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/217\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 217,\r\n        \"name_or_title\": \"ZHANG Haoran is part of a Chinese hacking group known as <a href=\\\"https://www.fbi.gov/wanted/cyber/apt-41-group\\\" data-val=\\\"https://www.fbi.gov/wanted/cyber/apt-41-group\\\" data-urltype=\\\"/view\\\" data-linktype=\\\"external\\\">APT 41</a> and BARIUM.  On August 15, 2019, a Grand Jury in the District of Columbia returned an indictment against Chinese nationals ZHANG Haoran and <a href=\\\"https://www.fbi.gov/wanted/cyber/tan-dailin\\\" data-val=\\\"https://www.fbi.gov/wanted/cyber/tan-dailin\\\" data-urltype=\\\"/view\\\" data-linktype=\\\"external\\\">TAN Dailin</a> on multiple charges including Conspiracy to Cause Damage to, and Obtain Information by Unauthorized Access to, Protected Computers; Conspiracy to Commit Wire Fraud; Wire Fraud; Obtaining Information by Unauthorized Access to Protected Computers; Intentionally Causing Damage to Protected Computers; Aggravated Identity Theft; Money Laundering; and Aiding and Abetting.  These charges primarily stemmed from alleged activity targeting high technology and video gaming companies, and a United Kingdom citizen. \\r\\n \"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/195\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 195,\r\n        \"name_or_title\": \"Beginning in approximately 2012, FBI Kansas City and the Jackson County Missouri Drug Task Force investigated a group of individuals allegedly responsible for distributing crack cocaine, powder cocaine, marijuana, and methamphetamine in the greater Kansas City metropolitan area. The organization was linked to a Mexican Transnational Criminal Organization. In January of 2015, approximately 14 of the subjects were indicted and most of them were arrested. However, Jeremias Lopez-Lira eluded capture and is believed to be in Santa Cruz, Mexico.\\r\\n \\r\\nAn arrest warrant was issued for Jeremias Lopez-Lira on January 27, 2015, by the United States District Court, Western District of Missouri, after Lopez-Lira was charged federally with money laundering conspiracy and conspiracy to distribute marijuana.\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/196\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 196,\r\n        \"name_or_title\": \"Between April and December of 2004, the FBI, along with numerous local, state, and federal agencies, conducted an extensive investigation targeting an illegal drug trafficking and money laundering enterprise in the Chicago area. Of the 23 individuals charged as a result of this investigation, a handful of fugitives remain, including Armando Vargas.\\r\\n \\r\\nAn arrest warrant was issued on October 3, 2006, by the United States District Court, Northern District of Illinois, Eastern Division, after Vargas was charged federally with conspiring to distribute a controlled substance and aiding and abetting.\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/197\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 197,\r\n        \"name_or_title\": \"Between April and December of 2004, the FBI, along with numerous local, state, and federal agencies, conducted an extensive investigation targeting an illegal drug trafficking and money laundering enterprise in the Chicago area. Of the 23 individuals charged as a result of this investigation, a handful of fugitives remain, including Oscar D. Vega.\\r\\n \\r\\nAn arrest warrant was issued on October 3, 2006, by the United States District Court, Northern District of Illinois, Eastern Division, after Vega was charged federally with conspiring to distribute a controlled substance and aiding and abetting.\"\r\n    },\r\n    {\r\n        \"classification\": \"Main\",\r\n        \"links\": {\r\n            \"href\": \"http://localhost:8080/api/suspect/198\",\r\n            \"@method\": \"find_by_id\"\r\n        },\r\n        \"suspect_id\": 198,\r\n        \"name_or_title\": \"Between April and December of 2004, the FBI, along with numerous local, state, and federal agencies, conducted an extensive investigation targeting an illegal drug trafficking and money laundering enterprise in the Chicago area. Of the 23 individuals charged as a result of this investigation, a handful of fugitives remain, including Sergio Luis Martinez-Varela.\\r\\n \\r\\nAn arrest warrant was issued on October 3, 2006, by the United States District Court, Northern District of Illinois, Eastern Division, after Martinez-Varela was charged federally with conspiring to distribute a controlled substance, money laundering, and aiding and abetting.\"\r\n    }\r\n]"
+						}
+					]
+				},
+				{
+					"name": "Find Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base}}/suspect/?name=YEVGYENIY&last_name=IGORYEVICH",
+							"host": [
+								"{{base}}"
+							],
+							"path": [
+								"suspect",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "YEVGYENIY"
+								},
+								{
+									"key": "last_name",
+									"value": "IGORYEVICH"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/suspect/?name=YEVGYENIY&last_name=IGORYEVICH",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"suspect",
+										""
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "YEVGYENIY"
+										},
+										{
+											"key": "last_name",
+											"value": "IGORYEVICH"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"criminal\": {\n        \"description\": \"Yevgyeniy Igoryevich Polyanin is wanted for his alleged involvement in ransomware attacks and money laundering activities.  It is alleged that, through the use and deployment of Sodinokibi and REvil ransomware, Polyanin left electronic notes in the form of a text file on victims’ computers.  The notes included web addresses for the victims to visit and have their files decrypted.  Upon visiting these web addresses, victims were given the ransom amount demanded and provided a virtual currency address to use to pay the ransom.  If a victim paid the ransom amount, Polyanin provided the decryption key, and the victims then were able to access their files.  If a victim did not pay the ransom, Polyanin typically posted the victims’ exfiltrated data or claimed he sold the exfiltrated data to third parties.  Polyanin has been charged in an indictment filed in the United States District Court for the Northern District of Texas, Dallas, Texas, with conspiracy to commit fraud and related activity in connection with computers, substantive counts of intentional damage to protected computers, and conspiracy to commit money laundering.\\r\\n \",\n        \"reward\": \"@none\",\n        \"name_or_title\": \"YEVGYENIY IGORYEVICH POLYANIN\"\n    },\n    \"aliases\": [],\n    \"crimes\": [\n        \"Yevgyeniy Igoryevich Polyanin is wanted for his alleged involvement in ransomware attacks and money laundering activities.  It is alleged that, through the use and deployment of Sodinokibi and REvil ransomware, Polyanin left electronic notes in the form of a text file on victims’ computers.  The notes included web addresses for the victims to visit and have their files decrypted.  Upon visiting these web addresses, victims were given the ransom amount demanded and provided a virtual currency address to use to pay the ransom.  If a victim paid the ransom amount, Polyanin provided the decryption key, and the victims then were able to access their files.  If a victim did not pay the ransom, Polyanin typically posted the victims’ exfiltrated data or claimed he sold the exfiltrated data to third parties.  Polyanin has been charged in an indictment filed in the United States District Court for the Northern District of Texas, Dallas, Texas, with conspiracy to commit fraud and related activity in connection with computers, substantive counts of intentional damage to protected computers, and conspiracy to commit money laundering.\\r\\n \"\n    ],\n    \"files\": [\n        {\n            \"uri\": \"https://www.fbi.gov/wanted/cyber/yevgyeniy-igoryevich-polyanin/download.pdf\",\n            \"language\": \"English\"\n        }\n    ],\n    \"images\": [\n        {\n            \"uri\": \"https://www.fbi.gov/wanted/cyber/yevgyeniy-igoryevich-polyanin/polyanin5.jpg\",\n            \"description\": \"@none\"\n        }\n    ],\n    \"characteristic\": {\n        \"age\": \"null\",\n        \"ethnicity\": \"White\",\n        \"nationatily\": \"Russian\",\n        \"sex\": \"Male\",\n        \"marks\": \"@none\",\n        \"hair\": \"@none\",\n        \"birth_of_place\": \"Russia\",\n        \"color_eye\": \"@none\"\n    },\n    \"anti_money_laundering\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
